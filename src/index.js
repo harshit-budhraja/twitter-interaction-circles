@@ -5,8 +5,6 @@ const { getUser } = require("./core/api");
 const { renderText } = require("./core/text");
 const Twitter = require("twitter-lite");
 
-const USER = "TEST";
-
 /**
  * Load the environment variables from the .env file
  */
@@ -16,6 +14,9 @@ dotenv.config();
  * This is the main function of the app. It need to be a function because we can't have a top level await.
  */
 async function main() {
+	// Which user to create the circles for
+	const USER = process.env.USER_NAME;
+
 	// Create an instance of the API client using the consumer keys for your app
 	const client = new Twitter({
 		consumer_key: process.env.CONSUMER_KEY,
