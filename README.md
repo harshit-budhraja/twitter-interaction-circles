@@ -1,9 +1,9 @@
 
 ![Example](circle.png)
 
-# Twitter Interaction Circle
+# Twt Circle
 
-Originally from [Twopcharts](https://twopcharts.com/) it has been making the round in the dev community.
+Originally from [Twopcharts](https://twopcharts.com/) (and this repo forked from [duiker101](https://github.com/duiker101/twitter-interaction-circles)) it has been making the round in the dev community.
 I believe this is a great opportunity for a project to learn from. 
 The concept is easy and straightforward but the realization encompasses a lot of concepts.
 
@@ -11,19 +11,19 @@ You can read more about the realization of this project on the [HackerTyper Blog
 
 ## Installation
 ```shell script
-git clone git@github.com:duiker101/twitter-interaction-circle.git
-cd twitter-interaction-circle
-yarn install
+git clone https://github.com/harshit-budhraja/twt-circle.git
+cd twt-circle
+npm install
 ```
 
 Run with 
 ```shell script
-yarn build
+node src/index.js
 ```
 
 You can also generate a text version of the image with the complete list of the presented users with the following command
 ```shell script
-yarn build --text
+node src/index.js --text
 ```
 The output will go in `users.txt` file in the root of the project
 
@@ -45,8 +45,7 @@ Make sure you don't have spaces.
 
 ## Modifications
 
-If you wish, you can replace the first part of the main loop in the `index.js` to use the getUser() function instead of getMe().
-This will allow you to generate the circles for any public Twitter user. All the API methods used take advantage only of public data.
+I, [harshit-budhraja](https://github.com/harshit-budhraja), have done some modifications to the code to make it run.
 
 ## Challenges
 

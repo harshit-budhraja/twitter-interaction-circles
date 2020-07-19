@@ -5,7 +5,7 @@ const { getUser } = require("./core/api");
 const { renderText } = require("./core/text");
 const Twitter = require("twitter-lite");
 
-const USER = "harshiiiiiit";
+const USER = "TEST";
 
 /**
  * Load the environment variables from the .env file
