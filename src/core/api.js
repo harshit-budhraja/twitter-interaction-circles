@@ -1,3 +1,4 @@
+const globalThis = global;
 
 /**
  * Fetch a single page of the timeline
@@ -91,12 +92,12 @@ async function getAvatars(ids) {
 
 	const res = await globalThis.TwitterClient.get("users/lookup", params);
 
-	return Object.fromEntries(
-		res.map((user) => [
-			user.id_str,
-			user.profile_image_url_https.replace("normal", "400x400"),
-		])
-	);
+	const retval = {};
+	res.forEach((user) => {
+		retval[user.id_str] = user.profile_image_url_https.replace("normal", "400x400");
+	});
+	
+	return retval;
 }
 
 /**

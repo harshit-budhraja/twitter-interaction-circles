@@ -1,9 +1,11 @@
 const dotenv = require("dotenv");
-const getInteractions = require("./data");
-const render = require("./image");
-const {getUser} = require("./api");
-const {renderText} = require("./text");
+const getInteractions = require("./core/data");
+const render = require("./core/image");
+const { getUser } = require("./core/api");
+const { renderText } = require("./core/text");
 const Twitter = require("twitter-lite");
+
+const USER = "harshiiiiiit";
 
 /**
  * Load the environment variables from the .env file
@@ -17,7 +19,7 @@ async function main() {
 	// Create an instance of the API client using the consumer keys for your app
 	const client = new Twitter({
 		consumer_key: process.env.CONSUMER_KEY,
-		consumer_secret: process.env.CONSUMER_SECRET,
+		consumer_secret: process.env.CONSUMER_SECRET
 	});
 
 	// Use the previous client to fetch the bearer token
@@ -26,13 +28,13 @@ async function main() {
 
 	// Create a new twitter client with this token.
 	// We assign this client to a global variable so we can access it in the api module
-	globalThis.TwitterClient = new Twitter({
-		bearer_token: bearer.access_token,
+	global.TwitterClient = new Twitter({
+		bearer_token: bearer.access_token
 	});
 
-	// fetch the information of the logged in user
+	// fetch the information of the user
 	// instead of getMe you could replace it with another method to get a third user to generate their circles
-	const user = await getUser("WHATEVER_USERNAME_YOU_WANT");
+	const user = await getUser(USER);
 
 	// this is how many users we will have for each layer from the inside out
 	const layers = [8, 15, 26];
@@ -42,11 +44,11 @@ async function main() {
 
 	// render the image
 	await render([
-		{distance: 0, count: 1, radius: 110, users: [user]},
-		{distance: 200, count: layers[0], radius: 64, users: data[0]},
-		{distance: 330, count: layers[1], radius: 58, users: data[1]},
-		{distance: 450, count: layers[2], radius: 50, users: data[2]},
-	]);
+		{ distance: 0, count: 1, radius: 110, users: [user] },
+		{ distance: 200, count: layers[0], radius: 64, users: data[0] },
+		{ distance: 330, count: layers[1], radius: 58, users: data[1] },
+		{ distance: 450, count: layers[2], radius: 50, users: data[2] },
+	], USER);
 
 	// Look at the arguments passed to the cli. If one of them is --text then we want to render a text version of the image too
 	const shouldRenderText = process.argv.find((arg) => arg === "--text");

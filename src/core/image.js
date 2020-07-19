@@ -13,7 +13,7 @@ const toRad = (x) => x * (Math.PI / 180);
  * users: list of users to render in the format {avatar:string}
  * @returns {Promise<void>}
  */
-module.exports = async function render(config) {
+module.exports = async function render(config, user_name) {
 	const width = 1000;
 	const height = 1000;
 
@@ -69,7 +69,7 @@ module.exports = async function render(config) {
 	}
 
 	// write the resulting canvas to file
-	const out = fs.createWriteStream("./circle.png");
+	const out = fs.createWriteStream(`./${user_name}.png`);
 	const stream = canvas.createPNGStream();
 	stream.pipe(out);
 	out.on("finish", () => console.log("Done!"));
